@@ -11,15 +11,14 @@ const Navbar = () => {
     return (
         <nav
             id="app-nav"
-            className="sm:bg-slate-300 sm:gap-10 shadow-2xl p-8 gap-4 flex bg-gray-500 text-red-600 dark:bg-blend-darken dark:text-fuchsia-50">
+            className="sm:bg-slate-300 sm:gap-10 shadow-2xl p-8 gap-4 flex bg-gray-500 text-red-600 dark:bg-blend-darken dark:bg-fuchsia-50">
 
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/about">About</NavLink>
 
             <div className="hidden sm:flex sm:gap-10">
-                {!isLoggedIn && <NavLink to="/movies">Movies</NavLink>}
+                {isLoggedIn && <NavLink to="/movies">Movies</NavLink>}
                 {isLoggedIn && <NavLink to="/review">Review</NavLink>}
-
             </div>
 
             <div className="flex-1"></div>

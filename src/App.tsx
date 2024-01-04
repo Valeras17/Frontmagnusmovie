@@ -24,12 +24,10 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
 
-        {/* for non-logged-in-users */}
         {!isLoggedIn && <Route path="/register" element={<Register />} />}
         {!isLoggedIn && <Route path="/login" element={<Login />} />}
         {!isLoggedIn && <Route path="/review" element={<Review />} />}
-
-        <Route path="/movies" element={<Movies />} />
+        {isLoggedIn &&<Route path="/movies" element={<Movies />} />}
         
         <Route path="*" element={<NotFound />} />
 
