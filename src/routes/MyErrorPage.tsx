@@ -1,12 +1,11 @@
 import React from 'react';
 import ErrorCard from "../components/card/ErrorCard";
 
-interface NotFoundProps {
-  errorCode?: number; 
+interface MyErrorPageProps {
+  errorCode: number;
 }
 
-const NotFound: React.FC<NotFoundProps> = ({ errorCode = 404 }) => {
-  
+const MyErrorPage: React.FC<MyErrorPageProps> = ({ errorCode }) => {
   return (
     <div>
       <ErrorCard errorCode={errorCode} />
@@ -14,5 +13,4 @@ const NotFound: React.FC<NotFoundProps> = ({ errorCode = 404 }) => {
   );
 };
 
-export default NotFound;
-
+export default MyErrorPage;

@@ -3,7 +3,8 @@ interface AuthContextState {
     isLoggedIn: boolean;
     token?: string;
     username?: string;
-    login: (username: string, token: string) => void;
+    userRole?: string;
+    login: (username: string, token: string,role: string) => void;
     logout: () => void;
 }
 const initialState = {
@@ -18,31 +19,35 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState<string>();
     const [token, setToken] = useState<string>();
+    const [userRole, setUserRole] = useState<string>();
 
     useEffect(() => {
-        //code that runs once, thus no infinite render loop
-        //run code once the component is loaded to the dom:
+        
         const data = localStorage.getItem("user");
         if (data) {
             const user = JSON.parse(data);
             setIsLoggedIn(true);
             setToken(user.token);
             setUsername(user.username);
+            setUserRole(user.role);
         }
     }, []);
     const auth = {
         isLoggedIn: isLoggedIn,
         token,
         username,
-        login: (username: string, token: string) => {
+        userRole,
+        login: (username: string, token: string,role: string) => {
             setUsername(username);
             setToken(token);
+            setUserRole(role);
             setIsLoggedIn(true);
         },
         logout: () => {
             localStorage.removeItem("user");
             setUsername(undefined);
             setToken(undefined);
+            setUserRole(undefined);
             setIsLoggedIn(false);
             
         },

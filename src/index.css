@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 
 body{
     background-color: #000000;
 }
+
+iframe {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    transform: translate(-50%, -50%) scale(1.5) !important; 
+    border: none !important;
+  }

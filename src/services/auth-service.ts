@@ -6,23 +6,19 @@ export const register = (username: string, email: string, password: string) => {
 };
 export const login = (username: string, password: string) => {
   return axios.post(`${baseUrl}/signin`, { username, password }).then((res) => {
-    //logic what do we want to do with the token:
-    //axios body: res.data.
+    
     const token = res.data.jwt;
+    const userRole = res.data.role;
     if (token) {
-      //remember me: save the token and username
-      //localStorage.setItem("username", username);
-      //localStorage.setItem("token", token);
-      //instead of saving each string individually - we save an object as a string
-      localStorage.setItem("user", JSON.stringify({ token, username }));
+
+      localStorage.setItem("user", JSON.stringify({ token, username,role: userRole }));
     }
-    //ui will use res instead of res.data
-    //return res.data
+    
     return res;
   });
 };
 export const logout = () => {
-  //forget the user
+  
   localStorage.removeItem("user");
 };
 const authService = { register, login, logout };

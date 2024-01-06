@@ -15,7 +15,7 @@ const Login = () => {
   const validationSchema = Yup.object({
     username: Yup.string().min(2).required(),
     password: Yup.string()
-      .min(6)
+      .min(8)
       .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{8,20}$/)
       .required(),
   });
@@ -35,8 +35,14 @@ const Login = () => {
         setError(undefined)
         authService.login(username, password)
         .then(res=>{
-          login(username,res.data.jwt);
-          nav("/home")
+          const userRole = res.data.role;
+          login(username,res.data.jwt,userRole);
+          if (userRole === 'ROLE_ADMIN') {
+            nav("/adminHome"); 
+          } else {
+            nav("/home"); 
+          }
+
         })
         .catch(e=>{
           console.log(e.response.data);
