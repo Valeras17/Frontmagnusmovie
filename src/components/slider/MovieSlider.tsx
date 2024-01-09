@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from 'react-router-dom';
 
 interface Movie {
   id: number;
@@ -15,7 +16,13 @@ interface MovieSliderProps {
   movies: Movie[];
 }
 
+
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
+  const navigate = useNavigate();
+
+    const handleSlideClick = (movieId: number) => {
+        navigate(`/review-movie/${movieId}`);
+    };
     
   const settings = {
     dots: true,
@@ -44,7 +51,7 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
   return (
     <Slider {...settings}>
       {movies.map(movie => (
-        <div key={movie.id} className="px-2">
+        <div key={movie.id} className="px-2 cursor-pointer" onClick={() => handleSlideClick(movie.id)}>
           <div className="transition-transform duration-300 transform hover:scale-125">
             <img
               className="w-full h-64 object-cover rounded-lg"

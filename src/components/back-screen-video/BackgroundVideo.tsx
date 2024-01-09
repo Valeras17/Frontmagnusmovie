@@ -2,8 +2,6 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import { useVideo } from '../../contexts/VideoContext';
 
-
-
 const BackgroundVideo: React.FC = () => {
     const { videoUrl } = useVideo();
     const videoId = videoUrl.split('v=')[1]?.split('&')[0];

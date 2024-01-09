@@ -7,6 +7,7 @@ import { DarkModeContextWrapper } from './contexts/DarkModeContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { VideoProvider } from './contexts/VideoContext';
+import { ReviewProvider } from './contexts/ReviewContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,7 +21,9 @@ root.render(
       <AuthContextProvider>
         <DarkModeContextWrapper>
         <VideoProvider> 
+        <ReviewProvider>
             <App />
+            </ReviewProvider>
           </VideoProvider>
         </DarkModeContextWrapper>
       </AuthContextProvider>

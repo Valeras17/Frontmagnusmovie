@@ -15,7 +15,7 @@ const Register = () => {
     username: Yup.string().min(2).required(),
     email: Yup.string().email().required(),
     password: Yup.string()
-      .min(6)
+      .min(8)
       .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{8,20}$/)
       .required(),
   });

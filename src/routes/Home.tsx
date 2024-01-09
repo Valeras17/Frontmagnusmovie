@@ -1,5 +1,5 @@
 
-import Movies from './Movies'
+import Movies from '../components/slider/Movies'
 
 const Home = () => {
   return (

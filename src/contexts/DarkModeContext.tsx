@@ -1,12 +1,12 @@
 import { ReactNode, createContext, useState } from "react";
-//1) initial state:
+
 const initialState = {
   darkMode: false,
   toggleDarkMode: () => {},
  };
-//2) create the context "STORE"
+
 const DarkModeContext = createContext(initialState);
-//3) create a wrapper component
+
 export const DarkModeContextWrapper = ({ children }: { children: ReactNode }) => {
   const [darkMode, setDark] = useState(false);
   const toggleDarkMode = () => {

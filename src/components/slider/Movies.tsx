@@ -1,23 +1,14 @@
 
 import { useQuery } from "react-query";
-import Spinner from "../components/spinner/Spinner";
-import { movieRequest } from "../services/magnusMovie-service";
-import MovieSlider from '../components/slider/MovieSlider';
+import Spinner from "../spinner/Spinner";
+import { movieRequest } from "../../services/magnusMovie-service";
+import MovieSlider from './MovieSlider';
 import { AxiosError } from "axios";
-import ErrorCard from "../components/card/ErrorCard";
-import { useVideo } from "../contexts/VideoContext";
+import ErrorCard from "../card/ErrorCard";
+import { useVideo } from "../../contexts/VideoContext";
 import { useEffect } from "react";
 
 
-interface Movie {
-  id: number;
-  title: string;
-  year: string;
-  url: string;
-  poster: string;
-  genre: string;
-  backdropScreen: string;
-}
 
 const Movies = () => {
   const { isLoading, data: res, error } = useQuery("get-movies", movieRequest);
@@ -63,7 +54,7 @@ const Movies = () => {
           <div className='my-4'>
             Genre: {movie?.genre}
           </div>
-          <p className='text-gray-400 text-sm'>
+          <p className='text-gray-300 text-sm'>
             Released: {movie?.year}
           </p>
         </div>

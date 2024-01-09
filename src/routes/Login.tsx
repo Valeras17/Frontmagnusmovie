@@ -38,7 +38,7 @@ const Login = () => {
           const userRole = res.data.role;
           login(username,res.data.jwt,userRole);
           if (userRole === 'ROLE_ADMIN') {
-            nav("/adminHome"); 
+            nav("/admin-home"); 
           } else {
             nav("/home"); 
           }
