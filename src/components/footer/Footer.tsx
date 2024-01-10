@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoMM from '../images/logoMM.png'
+import LogoMM from '../images/logoMMfooter.png'
 
 const Footer: React.FC = () => {
   return (

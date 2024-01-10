@@ -27,7 +27,7 @@ export const ReviewProvider: React.FC<{children: React.ReactNode}> = ({ children
     const [review, setReview] = useState<Review | null>(null);
 
     const updateReview = (newReview: Review) => {
-        console.log("Updating review in context:", newReview);
+        
         setReview(newReview);
     };
 

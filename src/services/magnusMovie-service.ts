@@ -1,5 +1,5 @@
 import { request } from "../utils/axios-interceptors";
-import { Review, Movie, User,MovieFormData,NewReviewData } from '../interfaces/types'
+import { Review, Movie, MovieFormData,NewReviewData } from '../interfaces/types'
 
 
 export const movieRequest = () => request({ url: "/movies" });
@@ -61,7 +61,7 @@ export const sendReview = (reviewData: NewReviewData) =>
         }
         return review;
     } catch (error) {
-        console.error('Ошибка при получении деталей обзора:', error);
+
         throw error;
     }
 };

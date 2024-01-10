@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { deleteMovie, fetchAllMovies, movieRequestWithPagination } from '../../../services/magnusMovie-service';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import Pagination from '../../card/Pagination';
-import { Review, User, Movie,NewReviewData } from '../../../interfaces/types'
+import {  Movie } from '../../../interfaces/types'
 
 
 
@@ -25,12 +24,9 @@ const GetAllMoviesForm = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        console.log("Sending request to server for all movies");
         const allMovies = await fetchAllMovies();
-        console.log("All movies response received:", allMovies);
         setMovies(allMovies); 
       } catch (error) {
-        console.error('Error loading movies:', error);
       }
     };
   

@@ -34,7 +34,6 @@ const UpdateMovieForm = () => {
         }
     }, [movieId]);
 
-
     const validationSchema = Yup.object({
         title: Yup.string()
             .min(2, 'Title must be at least 2 characters')

@@ -40,12 +40,12 @@ const Login = () => {
           if (userRole === 'ROLE_ADMIN') {
             nav("/admin-home"); 
           } else {
-            nav("/home"); 
+            nav("/about"); 
           }
 
         })
         .catch(e=>{
-          console.log(e.response.data);
+
           setError("Sign in failed, username or password is incorrect");
         })
         .finally(()=>{
@@ -59,7 +59,7 @@ const Login = () => {
          {error && <p className='text-red-600 flex justify-center p-4 shadow-md w-fit mx-auto px-10 py-5 mt-4 rounded-3xl italic text-3xl'>{error}</p>}
       <div className=' bg bg-white-50 rounded-lg m-2 shadow-md w-1/2 mx-auto p-4'>
 
-        <div className="font-extralight text-lg  m-2 my-2 form-group gap-3 flex flex-col">
+        <div className="font-extralight text-3xl  m-2 my-2 form-group gap-3 flex flex-col">
           <label htmlFor="username">User name</label>
           <Field className=" px-2 py-1 rounded-md border-blue-500 border-2" placeholder="username..." name="username" type="text" id="username" />
           <ErrorMessage name="username" component="div" className='text-red-500' />
@@ -67,13 +67,13 @@ const Login = () => {
 
         
 
-        <div className="font-extralight text-lg  m-2 my-2 form-group gap-3 flex flex-col">
+        <div className="font-extralight text-3xl  m-2 my-2 form-group gap-3 flex flex-col">
           <label htmlFor="password">Password</label>
           <Field className=" px-2 py-1 rounded-md border-blue-500 border-2" placeholder="password..." name="password" type="text" id="password" />
           <ErrorMessage name="password" component="div" className='text-red-500' />
           <button 
           disabled={Loading} 
-          className='disabled:bg-red-500/50 rounded-lg bg-slate-600 px-3 py-2 w-full'>Login</button>
+          className='disabled:bg-red-500/50 rounded-lg bg-blue-600 px-3 py-2 w-full :'>Login</button>
         </div>
 
       </div>

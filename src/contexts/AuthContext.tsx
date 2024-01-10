@@ -1,15 +1,16 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
+
 interface AuthContextState {
     isLoggedIn: boolean;
     token?: string;
     username?: string;
-    userRole?: string;
-    login: (username: string, token: string,role: string) => void;
+    userRoles?: string[];
+    login: (username: string, token: string,roles: string[]) => void;
     logout: () => void;
 }
 const initialState = {
     isLoggedIn: false,
-    login: (username: string, token: string) => { },
+    login: (username: string, token: string,roles:string[]) => { },
     logout: () => { },
 };
 
@@ -19,7 +20,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState<string>();
     const [token, setToken] = useState<string>();
-    const [userRole, setUserRole] = useState<string>();
+    const [userRoles, setUserRoles] = useState<string[]>();
 
     useEffect(() => {
         
@@ -29,25 +30,27 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
             setIsLoggedIn(true);
             setToken(user.token);
             setUsername(user.username);
-            setUserRole(user.role);
+            setUserRoles(user.roles);
+            
         }
     }, []);
     const auth = {
         isLoggedIn: isLoggedIn,
         token,
         username,
-        userRole,
-        login: (username: string, token: string,role: string) => {
+        userRoles,
+        login: (username: string, token: string,roles: string[]) => {
             setUsername(username);
             setToken(token);
-            setUserRole(role);
+            setUserRoles(roles);
             setIsLoggedIn(true);
+            
         },
         logout: () => {
             localStorage.removeItem("user");
             setUsername(undefined);
             setToken(undefined);
-            setUserRole(undefined);
+            setUserRoles(undefined);
             setIsLoggedIn(false);
             
         },

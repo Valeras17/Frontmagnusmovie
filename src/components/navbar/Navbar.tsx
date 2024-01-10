@@ -1,43 +1,71 @@
-import {  NavLink } from "react-router-dom";
-import './Navbar.scss'
-import { BsMoonFill, BsSunFill } from "react-icons/bs";
-import { useContext } from "react";
-import DarkModeContext from "../../contexts/DarkModeContext";
-import AuthContext from "../../contexts/AuthContext";
+import { useContext, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { BsSunFill, BsMoonFill } from 'react-icons/bs';
+import AuthContext from '../../contexts/AuthContext';
 
 const Navbar = () => {
-    const { isLoggedIn, logout, userRole } = useContext(AuthContext)
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-    return (
-        <nav
-            id="app-nav"
-            className="sm:bg-slate-50 sm:gap-10 shadow-2xl p-8 gap-4 flex bg-black text-red-600 dark:bg-blend-darken dark:bg-fuchsia-50 opacity-80">
-            <h1>MagnusMovie</h1>
+    const { isLoggedIn, userRoles, logout } = useContext(AuthContext);
+    console.log("User Roles in Navbar:", userRoles);
+    const [darkMode, setDarkMode] = useState(false);
+    console.log("User Roles:", userRoles);
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    };
 
-            <NavLink to="/admin-home">Admin Panel</NavLink>
-            <NavLink to="/user-home">User Panel</NavLink>
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <div className="">
-                <NavLink to="/movies">Movies</NavLink>
+    useEffect(() => {
+        console.log("Updated User Roles in Navbar:", userRoles);
+    }, [userRoles]);
+
+    return (
+        <nav className={`relative shadow-2xl p-4 flex justify-between items-center flex-wrap transition-colors duration-300 ${darkMode ? 'bg-white text-black' : 'bg-black text-red-600'}`}>
+            <div className="flex gap-4 items-center">
+                <h1 className={`font-bold text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl transition-colors duration-300 ${darkMode ? 'text-black' : 'text-red-600'}`}>
+                    MagnusMovie
+                </h1>
+
+                {isLoggedIn ? (
+
+                    <div className=' md:flex gap-4 text-lg font-semibold '>
+                        <NavLink className='  transition-transform duration-300 hover:scale-110 active:scale-135' to="/genres">Genres</NavLink>
+
+                        <div className="hidden md:flex gap-4 text-lg font-semibold">
+
+                            <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/home">Home</NavLink>
+                            
+                            <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/about">About</NavLink>
+                            {userRoles && userRoles.includes('ROLE_ADMIN') && (
+                                <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/admin-home">Admin Panel</NavLink>
+                            )}
+                            {userRoles && userRoles.includes('ROLE_USER') && (
+                                <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/user-home">User Panel</NavLink>
+                            )}
+
+                        </div>
+                    </div>
+                ) : (
+                    <div className="hidden md:flex gap-4 text-lg font-semibold">
+                        <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-125' to="/about">About</NavLink>
+                    </div>
+                )}
             </div>
-            <div className="flex-1"></div>
-            <div className="" >
-                <NavLink to="/login">Login</NavLink>
-                <button
-                    type="button"
-                    onClick={() => logout()}
-                >
-                    Logout
+
+            <div className="flex gap-4 items-center text-lg font-semibold">
+                {!isLoggedIn && (
+                    <>
+                        <NavLink className="transition-transform duration-300 hover:scale-110 active:scale-125" to="/login">Login</NavLink>
+                        <NavLink className="transition-transform duration-300 hover:scale-110 active:scale-125" to="/register">Register</NavLink>
+                    </>
+                )}
+                {isLoggedIn && (
+                    <>
+
+                        <button className="transition-transform duration-300 hover:scale-110 active:scale-125" type="button" onClick={logout}>Logout</button>
+                    </>
+                )}
+                <button className="transition-transform duration-300 hover:scale-110 active:scale-125" type="button" onClick={toggleDarkMode}>
+                    {darkMode ? <BsSunFill /> : <BsMoonFill />}
                 </button>
-                <NavLink to="/register">Register</NavLink>
             </div>
-            <button
-                type="button"
-                onClick={() => toggleDarkMode()}
-            >
-                {darkMode ? <BsSunFill /> : <BsMoonFill />}
-            </button>
         </nav>
     );
 };

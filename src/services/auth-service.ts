@@ -8,10 +8,11 @@ export const login = (username: string, password: string) => {
   return axios.post(`${baseUrl}/signin`, { username, password }).then((res) => {
     
     const token = res.data.jwt;
-    const userRole = res.data.role;
-    if (token) {
+    const userRoles = res.data.roles;
+    console.log("Response from login:", res.data);
 
-      localStorage.setItem("user", JSON.stringify({ token, username,role: userRole }));
+    if (token) {
+      localStorage.setItem("user", JSON.stringify({ token, username,roles: userRoles }));
     }
     
     return res;

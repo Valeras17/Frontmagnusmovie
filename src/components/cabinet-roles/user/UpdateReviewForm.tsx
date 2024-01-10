@@ -30,7 +30,6 @@ const UpdateReviewForm: React.FC = () => {
           rating: reviewData.rating
         });
       } catch (error) {
-        console.error('Error fetching review data:', error);
         Swal.fire('Error', 'Failed to fetch review data', 'error');
       } finally {
         setLoading(false);

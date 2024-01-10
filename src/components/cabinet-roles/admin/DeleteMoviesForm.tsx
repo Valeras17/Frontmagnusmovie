@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { deleteMovie } from '../../../services/magnusMovie-service';
 import Swal from 'sweetalert2';
 

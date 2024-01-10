@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import { reviewRequest, sendReview } from '../../services/magnusMovie-service';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-import { Review, User, Movie,NewReviewData } from '../../interfaces/types';
+import { Review, NewReviewData } from '../../interfaces/types';
 
 interface ReviewFormCardProps {
     movieId: number;

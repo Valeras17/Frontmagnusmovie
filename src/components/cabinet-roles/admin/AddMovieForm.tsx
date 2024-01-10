@@ -6,7 +6,7 @@ import { addMovie } from '../../../services/magnusMovie-service';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import Spinner from '../../spinner/Spinner';
-import { Review,User,Movie,MovieFormData } from '../../../interfaces/types';
+import { MovieFormData } from '../../../interfaces/types';
 
 
 

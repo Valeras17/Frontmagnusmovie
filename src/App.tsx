@@ -17,14 +17,14 @@ import UpdateMovieForm from "./components/cabinet-roles/admin/UpdateMovieForm";
 import GetAllMoviesForm from "./components/cabinet-roles/admin/GetAllMoviesForm";
 import EditMovies from "./components/cabinet-roles/admin/EditMovies";
 import ReviewMoviePage from "./components/cabinet-roles/user/ReviewMoviePage";
-import MoviesWithReviewsForm from "./components/cabinet-roles/user/ReviewsByMoviesIDForm";
 import UserHome from "./components/cabinet-roles/user/UserHome";
 import UpdateReviewForm from "./components/cabinet-roles/user/UpdateReviewForm";
 import ReviewsByMoviesIDForm from "./components/cabinet-roles/user/ReviewsByMoviesIDForm";
 
 
 const App = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, userRoles } = useContext(AuthContext);
+  console.log("User role in App:", userRoles);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -32,30 +32,37 @@ const App = () => {
 
       <div className="flex-grow">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/review-movie/:movieId" element={<ReviewMoviePage />} />
-          <Route path="/movies" element={<Movies />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/admin-home" element={<AdminHome />} />
-          <Route path="/add-movie" element={<AddMovieForm />} />
-          <Route path="/update-movie/:movieId" element={<UpdateMovieForm />} />
-          <Route path="/get-all-movies" element={<GetAllMoviesForm />} />
-          <Route path="/edit-movies" element={<EditMovies />} />
-          <Route path="/user-home" element={<UserHome />} />
-          <Route path="/reviews-with-movies" element={<ReviewsByMoviesIDForm />} />
-          <Route path="/update-review/:movieId/:reviewId" element={<UpdateReviewForm />} />
 
 
-    
-    
-    
+          {isLoggedIn && (
+            <>
+              <Route path="/home" element={<Home />} />
+              <Route path="/review-movie/:movieId" element={<ReviewMoviePage />} />
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/user-home" element={<UserHome />} />
+              <Route path="/reviews-with-movies" element={<ReviewsByMoviesIDForm />} />
+              <Route path="/update-review/:movieId/:reviewId" element={<UpdateReviewForm />} />
+            </>
+          )}
+
+
+          {isLoggedIn && userRoles && userRoles.includes('ROLE_ADMIN') && (
+            <>
+              <Route path="/admin-home" element={<AdminHome />} />
+              <Route path="/add-movie" element={<AddMovieForm />} />
+              <Route path="/update-movie/:movieId" element={<UpdateMovieForm />} />
+              <Route path="/get-all-movies" element={<GetAllMoviesForm />} />
+              <Route path="/edit-movies" element={<EditMovies />} />
+            </>
+          )}
         </Routes>
       </div>
-      
+
       <Footer />
       <BackgroundVideo />
     </div>
