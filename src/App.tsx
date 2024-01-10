@@ -20,11 +20,13 @@ import ReviewMoviePage from "./components/cabinet-roles/user/ReviewMoviePage";
 import UserHome from "./components/cabinet-roles/user/UserHome";
 import UpdateReviewForm from "./components/cabinet-roles/user/UpdateReviewForm";
 import ReviewsByMoviesIDForm from "./components/cabinet-roles/user/ReviewsByMoviesIDForm";
+import ListMoviesByGenre from "./components/card/ListMoviesByGenre";
+import SearchResults from "./components/card/SearchResults";
+
 
 
 const App = () => {
   const { isLoggedIn, userRoles } = useContext(AuthContext);
-  console.log("User role in App:", userRoles);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -47,6 +49,8 @@ const App = () => {
               <Route path="/user-home" element={<UserHome />} />
               <Route path="/reviews-with-movies" element={<ReviewsByMoviesIDForm />} />
               <Route path="/update-review/:movieId/:reviewId" element={<UpdateReviewForm />} />
+              <Route path="/movies/:genre" element={<ListMoviesByGenre />} />
+              <Route path="/search-results" element={<SearchResults />} />
             </>
           )}
 

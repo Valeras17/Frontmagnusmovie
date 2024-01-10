@@ -84,7 +84,7 @@ const UpdateReviewForm: React.FC = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button className=' bg-green-500 hover:bg-green-600 text-white font-bold' type="primary" htmlType="submit">
             Update Review
           </Button>
         </Form.Item>

@@ -9,7 +9,7 @@ export const login = (username: string, password: string) => {
     
     const token = res.data.jwt;
     const userRoles = res.data.roles;
-    console.log("Response from login:", res.data);
+    
 
     if (token) {
       localStorage.setItem("user", JSON.stringify({ token, username,roles: userRoles }));

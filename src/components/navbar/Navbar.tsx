@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 import AuthContext from '../../contexts/AuthContext';
+import GenresDropdown from '../card/GenresDropdown';
+import Search from '../card/Search';
 
 const Navbar = () => {
     const { isLoggedIn, userRoles, logout } = useContext(AuthContext);
-    console.log("User Roles in Navbar:", userRoles);
     const [darkMode, setDarkMode] = useState(false);
-    console.log("User Roles:", userRoles);
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
     };
 
     useEffect(() => {
-        console.log("Updated User Roles in Navbar:", userRoles);
+
     }, [userRoles]);
 
     return (
@@ -26,12 +26,13 @@ const Navbar = () => {
                 {isLoggedIn ? (
 
                     <div className=' md:flex gap-4 text-lg font-semibold '>
-                        <NavLink className='  transition-transform duration-300 hover:scale-110 active:scale-135' to="/genres">Genres</NavLink>
+
+                        
 
                         <div className="hidden md:flex gap-4 text-lg font-semibold">
-
+<GenresDropdown />
                             <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/home">Home</NavLink>
-                            
+
                             <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/about">About</NavLink>
                             {userRoles && userRoles.includes('ROLE_ADMIN') && (
                                 <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/admin-home">Admin Panel</NavLink>
@@ -39,7 +40,7 @@ const Navbar = () => {
                             {userRoles && userRoles.includes('ROLE_USER') && (
                                 <NavLink className='transition-transform duration-300 hover:scale-110 active:scale-135' to="/user-home">User Panel</NavLink>
                             )}
-
+                            <Search />
                         </div>
                     </div>
                 ) : (

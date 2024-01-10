@@ -4,7 +4,7 @@ import AuthContext from '../../../contexts/AuthContext';
 import Swal from 'sweetalert2';
 import Spinner from '../../spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
-import { Review, Movie, User } from '../../../interfaces/types'
+import { Review, Movie } from '../../../interfaces/types'
 
 
 

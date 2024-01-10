@@ -30,7 +30,7 @@ const ReviewFormCard: React.FC<ReviewFormCardProps> = ({ movieId }) => {
     };
 
     useEffect(() => {
-        loadReviews();
+        
     }, [movieId]);
 
     const validationSchema = Yup.object().shape({

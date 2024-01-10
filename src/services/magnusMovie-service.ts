@@ -75,7 +75,7 @@ export const sendReview = (reviewData: NewReviewData) =>
       });
       return response.data;
     } catch (error) {
-      console.error('Ошибка при обновлении обзора:', error);
+      console.error('Error while updating review:', error);
       throw error;
     }
   };
@@ -85,10 +85,25 @@ export const sendReview = (reviewData: NewReviewData) =>
       return response.data;
     
   };
+  export const fetchGenres = async (): Promise<string[]> => {
+    const response = await request({ url: '/movies/genres', method: 'GET' });
+    return response.data;
+    
+  };
 
+  export const fetchMoviesByGenre = async (genre: string): Promise<Movie[]> => {
+    const response = await request({
+      url: `/movies/search-by-genre?genre=${genre}`,
+      method: 'GET'
+    });
+    return response.data;
+  };
 
-  
-
-
- 
+  export const searchMoviesByTitle = async (title: string): Promise<Movie[]> => {
+    const response = await request({
+      url: `/movies/search?title=${title}`,
+      method: 'GET',
+    });
+    return response.data;
+  };
 

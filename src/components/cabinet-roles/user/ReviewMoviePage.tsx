@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails } from '../../../services/magnusMovie-service';
 import ReviewFormCard from '../../card/ReviewFormCard';
-import { Review, User, Movie,NewReviewData } from '../../../interfaces/types';
+import { Movie } from '../../../interfaces/types';
 
 const ReviewMoviePage = () => {
     const { movieId } = useParams<{ movieId: string }>();

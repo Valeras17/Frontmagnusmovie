@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { deleteMovie, fetchAllMovies, movieRequestWithPagination } from '../../../services/magnusMovie-service';
+import { deleteMovie, fetchAllMovies } from '../../../services/magnusMovie-service';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {  Movie } from '../../../interfaces/types'
